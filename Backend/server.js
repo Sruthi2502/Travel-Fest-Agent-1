@@ -2,10 +2,16 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
+app.use(cors({
+  origin: [
+    "https://travelfestagent.vercel.app",
+    "http://localhost:3000"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
-// Allow requests from React (localhost:3000 or ngrok)
-app.use(cors({ origin: "http://localhost:3000" }));
 
 // Example /chat endpoint
 app.post("/chat", (req, res) => {
